@@ -24,11 +24,11 @@ pipeline {
             steps {
                 script {
                     sh """
-                        sed -i 's|image: melekbadreddine/backend.*|image: melekbadreddine/backend:latest|' backend.yaml
+                        sed -i 's|image: melekbadreddine/backend.*|image: melekbadreddine/backend:${IMAGE_TAG}|' backend.yaml
                     """
                     
                     sh """
-                        sed -i 's|image: melekbadreddine/frontend.*|image: melekbadreddine/frontend:latest|' frontend.yaml
+                        sed -i 's|image: melekbadreddine/frontend.*|image: melekbadreddine/frontend:${IMAGE_TAG}|' frontend.yaml
                     """
                 }
             }
@@ -41,7 +41,7 @@ pipeline {
                         git config user.name "MelekBadreddine"
                         git config user.email "mbadreddine5@gmail.com"
                         git add .
-                        git commit -m "Update image tags to latest"
+                        git commit -m "Update image tags to ${IMAGE_TAG}"
                     """
                     
                     withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
