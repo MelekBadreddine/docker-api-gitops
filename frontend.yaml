@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: melekbadreddine/frontend
+        image: melekbadreddine/frontend:latest
         ports:
         - containerPort: 4200
 ---
